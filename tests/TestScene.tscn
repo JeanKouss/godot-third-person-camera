@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://bcnpxyjgapxu"]
+
+[ext_resource type="PackedScene" uid="uid://x0332b0al3ye" path="res://third_person_camera/ThirdPersonCamera.tscn" id="1_mlnhn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3085"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_5gmla"]
+sky_material = SubResource("ProceduralSkyMaterial_f3085")
+
+[sub_resource type="Environment" id="Environment_a0lg1"]
+background_mode = 2
+sky = SubResource("Sky_5gmla")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmewb"]
+albedo_color = Color(0.0235294, 0.0235294, 0.0509804, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k3wa2"]
+material = SubResource("StandardMaterial3D_lmewb")
+size = Vector2(100, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_j6kxh"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_et0gm"]
+albedo_color = Color(0.301961, 0.819608, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_op23f"]
+material = SubResource("StandardMaterial3D_et0gm")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ji1ja"]
+
+[node name="Test" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, -4.485, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a0lg1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_k3wa2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_j6kxh")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51114, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_op23f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_ji1ja")
+
+[node name="ThirdPersonCamera" parent="RigidBody3D" instance=ExtResource("1_mlnhn")]
+distance_from_pivot = 5.0
+tilt_sensitiveness = 10.0
+horizontal_rotation_sensitiveness = 100.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.23762e-08, -0.245274, 0.969454, -1.07212e-08, 0.969454, 0.245274, -1, 0, -4.37114e-08, 15.2072, 5.91266, 0)

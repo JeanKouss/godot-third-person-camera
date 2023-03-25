@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://x0332b0al3ye"]
+
+[ext_resource type="Script" path="res://third_person_camera/ThirdPersonCamera.gd" id="1_7krxa"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_84uqy"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ybkhn"]
+top_radius = 0.0
+height = 0.938
+
+[node name="ThirdPersonCamera" type="Node3D"]
+script = ExtResource("1_7krxa")
+tilt_sensitiveness = 10
+horizontal_rotation_sensitiveness = 100
+
+[node name="RotationPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
+
+[node name="OffsetPivot" type="Node3D" parent="RotationPivot"]
+transform = Transform3D(1, 4.76837e-07, -2.68221e-07, 5.51343e-07, 1.00007, 1.75834e-06, -5.36442e-07, -7.18236e-06, 1.00007, 0, 0, 0)
+
+[node name="CameraSpringArm" type="SpringArm3D" parent="RotationPivot/OffsetPivot"]
+shape = SubResource("SeparationRayShape3D_84uqy")
+spring_length = 10.0
+
+[node name="CameraMarker" type="Marker3D" parent="RotationPivot/OffsetPivot/CameraSpringArm"]
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
+current = true
+
+[node name="DebugMesh" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.570638)
+mesh = SubResource("CylinderMesh_ybkhn")
