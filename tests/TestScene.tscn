@@ -58,12 +58,10 @@ mesh = SubResource("SphereMesh_op23f")
 shape = SubResource("SphereShape3D_ji1ja")
 
 [node name="ThirdPersonCamera" parent="RigidBody3D" instance=ExtResource("1_mlnhn")]
-distance_from_pivot = 5.0
-current = false
-cull_mask = 0
-doppler_tracking = 0
-projection = 0
-f_o_v = null
+pivot_offset = Vector2(3, 0)
+mouse_follow = true
+mouse_x_sensitiveness = 0.1
+mouse_y_sensitiveness = 0.5
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.23762e-08, -0.245274, 0.969454, -1.07212e-08, 0.969454, 0.245274, -1, 0, -4.37114e-08, 15.2072, 5.91266, 0)
