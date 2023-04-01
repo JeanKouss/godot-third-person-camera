@@ -1,5 +1,6 @@
 @tool
 extends Node3D
+class_name ThirdPersonCamera
 
 
 @onready var _camera := $Camera
@@ -51,7 +52,11 @@ var camera_tilt_deg := 0.
 var camera_horizontal_rotation_deg := 0.
 
 
-func _physics_process(delta):
+func _ready():
+	_camera.top_level = true
+
+
+func _physics_process(_delta):
 	_update_camera_properties()
 	if Engine.is_editor_hint() :
 		_camera_marker.global_position = Vector3(0., 0., 1.).rotated(Vector3(1., 0., 0.), deg_to_rad(initial_dive_angle_deg)).rotated(Vector3(0., 1., 0.), deg_to_rad(-camera_horizontal_rotation_deg)) * _camera_spring_arm.spring_length + _camera_spring_arm.global_position
@@ -59,12 +64,11 @@ func _physics_process(delta):
 	_camera.global_position = _camera_marker.global_position
 	_camera_offset_pivot.global_position = _camera_offset_pivot.get_parent().to_global(Vector3(pivot_offset.x, pivot_offset.y, 0.0)) 
 	_camera_rotation_pivot.global_rotation_degrees.x = initial_dive_angle_deg
+	_camera_rotation_pivot.global_position = global_position
 	_process_tilt_input()
 	_process_horizontal_rotation_input()
 	_update_camera_tilt()
 	_update_camera_horizontal_rotation()
-
-
 
 
 func _process_horizontal_rotation_input() :
@@ -121,3 +125,19 @@ func _update_camera_properties() :
 	if _camera.attributes != attributes :
 		_camera.attributes = attributes
 	
+
+
+func get_front_direction() :
+	var dir : Vector3 = _camera_offset_pivot.global_position - _camera.global_position
+	dir.y = 0.
+	dir = dir.normalized()
+	return dir
+
+func get_back_direction() :
+	return -get_front_direction()
+
+func get_left_direction() :
+	return get_front_direction().rotated(Vector3.UP, PI/2)
+
+func get_right_direction() :
+	return get_front_direction().rotated(Vector3.UP, -PI/2)
