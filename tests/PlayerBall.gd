@@ -20,3 +20,11 @@ func _physics_process(_delta):
 		apply_central_force(dir * speed)
 
 
+func _unhandled_input(event):
+	if event.is_action_pressed("toggle_mouse_mode") :
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED :
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			camera.mouse_follow = false
+		else :
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			camera.mouse_follow = true

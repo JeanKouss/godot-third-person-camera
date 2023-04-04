@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bcnpxyjgapxu"]
+[gd_scene load_steps=29 format=3 uid="uid://bcnpxyjgapxu"]
 
 [ext_resource type="Script" path="res://tests/PlayerBall.gd" id="1_ki74y"]
 [ext_resource type="PackedScene" uid="uid://x0332b0al3ye" path="res://third_person_camera/ThirdPersonCamera.tscn" id="1_mlnhn"]
@@ -76,6 +76,11 @@ uv1_triplanar = true
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dmved"]
 data = PackedVector3Array(-11.9605, 3.686, 2.3405, 11.9605, 3.686, 2.3405, -11.9605, -3.686, 2.3405, 11.9605, 3.686, 2.3405, 11.9605, -3.686, 2.3405, -11.9605, -3.686, 2.3405, 11.9605, 3.686, -2.3405, -11.9605, 3.686, -2.3405, 11.9605, -3.686, -2.3405, -11.9605, 3.686, -2.3405, -11.9605, -3.686, -2.3405, 11.9605, -3.686, -2.3405, 11.9605, 3.686, 2.3405, 11.9605, 3.686, -2.3405, 11.9605, -3.686, 2.3405, 11.9605, 3.686, -2.3405, 11.9605, -3.686, -2.3405, 11.9605, -3.686, 2.3405, -11.9605, 3.686, -2.3405, -11.9605, 3.686, 2.3405, -11.9605, -3.686, -2.3405, -11.9605, 3.686, 2.3405, -11.9605, -3.686, 2.3405, -11.9605, -3.686, -2.3405, 11.9605, 3.686, 2.3405, -11.9605, 3.686, 2.3405, 11.9605, 3.686, -2.3405, -11.9605, 3.686, 2.3405, -11.9605, 3.686, -2.3405, 11.9605, 3.686, -2.3405, -11.9605, -3.686, 2.3405, 11.9605, -3.686, 2.3405, -11.9605, -3.686, -2.3405, 11.9605, -3.686, 2.3405, 11.9605, -3.686, -2.3405, -11.9605, -3.686, -2.3405)
 
+[sub_resource type="LabelSettings" id="LabelSettings_cxr6h"]
+font_size = 14
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Test" type="Node3D"]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
@@ -93,7 +98,6 @@ shape = SubResource("SphereShape3D_ji1ja")
 distance_from_pivot = 5.0
 initial_dive_angle_deg = -35.556
 current = true
-mouse_follow = true
 
 [node name="SpectatorCamera" type="Camera3D" parent="."]
 transform = Transform3D(-4.23762e-08, -0.245274, 0.969454, -1.07212e-08, 0.969454, 0.245274, -1, 7.01661e-14, -4.37114e-08, 47.6874, 17.5263, 0)
@@ -165,3 +169,37 @@ mesh = SubResource("BoxMesh_aytmu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Box5/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_dmved")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -86.0
+offset_right = 305.0
+grow_vertical = 0
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Ball controls : AWSD/QZSD"
+label_settings = SubResource("LabelSettings_cxr6h")
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Camera controls : UP, DOWN, RIGHT, LEFT"
+label_settings = SubResource("LabelSettings_cxr6h")
+
+[node name="Label3" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Change this in project settings > Input Map"
+label_settings = SubResource("LabelSettings_cxr6h")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 5.0
+offset_right = 266.0
+offset_bottom = 26.0
+text = "Toggle mouse capture mode : Tab"
+label_settings = SubResource("LabelSettings_cxr6h")
