@@ -1,3 +1,4 @@
+@icon("res://assets/icons/ThirdPersonCameraIcon.svg")
 @tool
 extends Node3D
 class_name ThirdPersonCamera
@@ -10,31 +11,53 @@ class_name ThirdPersonCamera
 @onready var _camera_marker := $RotationPivot/OffsetPivot/CameraSpringArm/CameraMarker
 
 
-@export_category("ThirdPersonCamera")
+
+## 
 @export var distance_from_pivot := 10.0 :
 	set(value) :
 		distance_from_pivot = value
 		$RotationPivot/OffsetPivot/CameraSpringArm.spring_length = distance_from_pivot
+
+## 
 @export var pivot_offset := Vector2.ZERO 
+
+##  
 @export_range(-90.0, 90.0) var initial_dive_angle_deg := -20.0 :
 	set(value) :
 		initial_dive_angle_deg = clampf(value, tilt_lower_limit_deg, tilt_upper_limit_deg)
+
+## 
 @export_range(-90.0, 90.0) var tilt_upper_limit_deg := 60.0
+
+##
 @export_range(-90.0, 90.0) var tilt_lower_limit_deg := -60.0
+
+##
 @export_range(1.0, 100.0) var tilt_sensitiveness := 10.0
+
+## 
 @export_range(10.0, 700.0) var horizontal_rotation_sensitiveness := 100.0
-# Exported variables to setup the camera itself
+
+## 
 @export var current : bool = false :
 	set(value) :
 		$Camera.current = value
 		current = value
+
+
+## 
 @export_group("mouse")
+## 
 @export var mouse_follow : bool = false
+
+##
 @export_range(0., 5.) var mouse_x_sensitiveness : float = 0.1
+
+## 
 @export_range(0., 2.) var mouse_y_sensitiveness : float = 0.5
 
 
-# Camera 3D basic setup
+# Camera3D properies replication
 @export_category("Camera3D")
 @export var keep_aspect : Camera3D.KeepAspect = Camera3D.KEEP_HEIGHT
 @export_flags_3d_render var cull_mask : int = 1048575
