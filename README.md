@@ -34,7 +34,6 @@ A Third Person Camera for Godot4.
       - [Camera tilt](#camera-tilt)
       - [Camera horizontal rotation](#camera-horizontal-rotation)
     - [Camera3D Properties](#camera3d-properties)
-  - [🔧 Running the tests ](#-running-the-tests-)
 
 ## 🏁 About<a id = "about"></a>
 
@@ -49,6 +48,8 @@ Here is a quick demo
 - Property name : `distance_from_pivot`
 - Type : `float`
 - Exported : Yes
+
+![Distance from pivot demo](readme-assets/doc/distance_from_pivot.gif)
 
 #### Pivot Offset
 
@@ -133,5 +134,3 @@ Here is a quick demo
 ### Camera3D Properties
 
 All Godot `Camera3D` Properties are available. You can access to camera node by `get_camera()` method. Also, it exported variables are available in the editor.
-
-## 🔧 Running the tests <a name = "tests"></a>
