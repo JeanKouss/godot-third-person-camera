@@ -1,4 +1,4 @@
-@icon("res://assets/icons/ThirdPersonCameraIcon.svg")
+@icon("./ThirdPersonCameraIcon.svg")
 @tool
 extends Node3D
 class_name ThirdPersonCamera
@@ -147,7 +147,10 @@ func _update_camera_properties() :
 		_camera.environment = environment
 	if _camera.attributes != attributes :
 		_camera.attributes = attributes
-	
+
+
+func get_camera() :
+	return $Camera
 
 
 func get_front_direction() :
