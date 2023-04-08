@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="third-person-camera"
-run/main_scene="res://tests/TestScene.tscn"
+run/main_scene="res://addons/third-person-camera/tests/TestScene.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/third-person-camera/plugin.cfg")
 
 [input]
 

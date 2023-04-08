@@ -1,7 +1,7 @@
 @icon("./ThirdPersonCameraIcon.svg")
 @tool
-extends Node3D
 class_name ThirdPersonCamera
+extends Node3D
 
 
 @onready var _camera := $Camera
