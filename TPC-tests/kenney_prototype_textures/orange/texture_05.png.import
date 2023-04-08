@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byc1l3f88knyq"
-path.s3tc="res://.godot/imported/texture_12.png-4db60b94110eb75c1546811f0380a3af.s3tc.ctex"
+uid="uid://3ut80mef1rtt"
+path.s3tc="res://.godot/imported/texture_05.png-64b5871c3b0ad4ef1c32b0d570c8190c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/third-person-camera/tests/kenney_prototype_textures/dark/texture_12.png"
-dest_files=["res://.godot/imported/texture_12.png-4db60b94110eb75c1546811f0380a3af.s3tc.ctex"]
+source_file="res://TPC-tests/kenney_prototype_textures/orange/texture_05.png"
+dest_files=["res://.godot/imported/texture_05.png-64b5871c3b0ad4ef1c32b0d570c8190c.s3tc.ctex"]
 
 [params]
 

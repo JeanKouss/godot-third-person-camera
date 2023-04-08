@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://godotengine.org">
-	<img src="readme-assets/ThirdPersonCamera.svg" width="200" alt="Godot Engine logo">
+	<img src="TPC-readme-assets/ThirdPersonCamera.svg" width="200" alt="Godot Engine logo">
   </a>
 </p>
 
@@ -49,7 +49,7 @@ Here is a quick demo
 - Type : `float`
 - Exported : Yes
 
-![Distance from pivot demo](readme-assets/doc/distance_from_pivot.gif)
+![Distance from pivot demo](TPC-readme-assets/doc/distance_from_pivot.gif)
 
 #### Pivot Offset
 
@@ -57,7 +57,7 @@ Here is a quick demo
 - Type : `Vector2`
 - Exported : Yes
 
-![Pivot offset demo](readme-assets/doc/pivot_offset.gif)
+![Pivot offset demo](TPC-readme-assets/doc/pivot_offset.gif)
 
 #### Dive angle
 
@@ -66,7 +66,7 @@ Here is a quick demo
 - Exported : Yes
 - Range : -90.0 .. 90.0
 
-![Dive angle demo](readme-assets/doc/dive_angle_demo.gif)
+![Dive angle demo](TPC-readme-assets/doc/dive_angle_demo.gif)
 
 #### Tilt upper limit
 
@@ -89,7 +89,7 @@ Here is a quick demo
 - Exported : Yes
 - Range : 1.0 .. 100.0
 
-![Tilt sensitiveness demo](readme-assets/doc/tilt_sensitiveness.gif)
+![Tilt sensitiveness demo](TPC-readme-assets/doc/tilt_sensitiveness.gif)
   
 #### Horizontal rotation sensitiveness
 
@@ -98,7 +98,7 @@ Here is a quick demo
 - Exported : Yes
 - Range : 10.0 .. 700.0
 
-![Horizontal rotation sensitiveness demo](readme-assets/doc/horizontal_rotation_sensitiveness.gif)
+![Horizontal rotation sensitiveness demo](TPC-readme-assets/doc/horizontal_rotation_sensitiveness.gif)
 
 #### Current
 
@@ -106,7 +106,7 @@ Here is a quick demo
 - Type : `bool`
 - Exported : Yes
 
-![Camera current demo](readme-assets/doc/camera_current_demo.gif)
+![Camera current demo](TPC-readme-assets/doc/camera_current_demo.gif)
 
 #### Mouse Follow
 
@@ -114,7 +114,7 @@ Here is a quick demo
 - Type : `bool`
 - Exported : Yes
 
-![Mouse follow demo](readme-assets/doc/mouse_follow_demo.gif)
+![Mouse follow demo](TPC-readme-assets/doc/mouse_follow_demo.gif)
 
 #### Mouse X sensitiveness
 
@@ -147,4 +147,4 @@ Here is a quick demo
 
 All Godot `Camera3D` Properties are available. You can access to camera node by `get_camera()` method. Also, it exported variables are available in the editor.
 
-![Camera3D properties image](readme-assets/doc/inspector.png)
+![Camera3D properties image](TPC-readme-assets/doc/inspector.png)

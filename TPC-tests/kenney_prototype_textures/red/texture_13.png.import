@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6pjscq4yoxmd"
-path="res://.godot/imported/inspector.png-60a8cae0df264974b2c60e7e0267e0f4.ctex"
+uid="uid://b8dlw2gs1a6k"
+path.s3tc="res://.godot/imported/texture_13.png-095b41cc512838a6a1103a31a309b8f9.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://addons/third-person-camera/readme-assets/doc/inspector.png"
-dest_files=["res://.godot/imported/inspector.png-60a8cae0df264974b2c60e7e0267e0f4.ctex"]
+source_file="res://TPC-tests/kenney_prototype_textures/red/texture_13.png"
+dest_files=["res://.godot/imported/texture_13.png-095b41cc512838a6a1103a31a309b8f9.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

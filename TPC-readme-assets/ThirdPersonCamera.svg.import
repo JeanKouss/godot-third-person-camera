@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqotqc7yxpqur"
-path="res://.godot/imported/ThirdPersonCamera.svg-f62a64d69df91b38284fe403a3164db7.ctex"
+path="res://.godot/imported/ThirdPersonCamera.svg-833de2be8ba47fca4aed7a81f7c883d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/third-person-camera/readme-assets/ThirdPersonCamera.svg"
-dest_files=["res://.godot/imported/ThirdPersonCamera.svg-f62a64d69df91b38284fe403a3164db7.ctex"]
+source_file="res://TPC-readme-assets/ThirdPersonCamera.svg"
+dest_files=["res://.godot/imported/ThirdPersonCamera.svg-833de2be8ba47fca4aed7a81f7c883d3.ctex"]
 
 [params]
 
