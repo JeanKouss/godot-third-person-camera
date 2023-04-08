@@ -96,12 +96,9 @@ shape = SubResource("SphereShape3D_ji1ja")
 
 [node name="ThirdPersonCamera" parent="RigidBody3D" instance=ExtResource("1_mlnhn")]
 current = true
-mouse_x_sensitiveness = 0.02
-mouse_y_sensitiveness = 0.075
 
 [node name="SpectatorCamera" type="Camera3D" parent="."]
 transform = Transform3D(-4.23762e-08, -0.245274, 0.969454, -1.07212e-08, 0.969454, 0.245274, -1, 7.01661e-14, -4.37114e-08, 47.6874, 17.5263, 0)
-current = true
 
 [node name="Map" type="Node3D" parent="."]
 

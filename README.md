@@ -57,12 +57,16 @@ Here is a quick demo
 - Type : `Vector2`
 - Exported : Yes
 
+![Pivot offset demo](readme-assets/doc/pivot_offset.gif)
+
 #### Dive angle
 
 - Property : `initial_dive_angle_deg`
 - Type : `float`
 - Exported : Yes
 - Range : -90.0 .. 90.0
+
+![Dive angle demo](readme-assets/doc/dive_angle_demo.gif)
 
 #### Tilt upper limit
 
@@ -84,6 +88,8 @@ Here is a quick demo
 - Type : `float`
 - Exported : Yes
 - Range : 1.0 .. 100.0
+
+![Tilt sensitiveness demo](readme-assets/doc/tilt_sensitiveness.gif)
   
 #### Horizontal rotation sensitiveness
 
@@ -92,17 +98,23 @@ Here is a quick demo
 - Exported : Yes
 - Range : 10.0 .. 700.0
 
+![Horizontal rotation sensitiveness demo](readme-assets/doc/horizontal_rotation_sensitiveness.gif)
+
 #### Current
 
 - Property : `current`
 - Type : `bool`
 - Exported : Yes
 
+![Camera current demo](readme-assets/doc/camera_current_demo.gif)
+
 #### Mouse Follow
 
 - Property : `mouse_follow`
 - Type : `bool`
 - Exported : Yes
+
+![Mouse follow demo](readme-assets/doc/mouse_follow_demo.gif)
 
 #### Mouse X sensitiveness
 
@@ -134,3 +146,5 @@ Here is a quick demo
 ### Camera3D Properties
 
 All Godot `Camera3D` Properties are available. You can access to camera node by `get_camera()` method. Also, it exported variables are available in the editor.
+
+![Camera3D properties image](readme-assets/doc/inspector.png)
