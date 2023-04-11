@@ -2,8 +2,14 @@
 
 <p align="center">
   <a href="https://godotengine.org">
-	<img src="TPC-readme-assets/ThirdPersonCamera.svg" width="200" alt="Godot Engine logo">
+    <img src="TPC-readme-assets/ThirdPersonCamera.svg" width="200" alt="Godot Engine logo">
   </a>
+</p>
+
+<p align="center">
+  <video controls>
+    <source src="TPC-readme-assets\TPC-demo-video.mp4" type="video/mp4">
+  </video>
 </p>
 
 A Third Person Camera for Godot4.
