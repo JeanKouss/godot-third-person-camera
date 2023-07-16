@@ -15,6 +15,10 @@ run/main_scene="res://TPC-demo/TestScene.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="C:/projects/tpc-movie/movie.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/third-person-camera/plugin.cfg")
@@ -69,5 +73,4 @@ toggle_mouse_mode={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

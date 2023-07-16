@@ -32,10 +32,10 @@ class_name ThirdPersonCamera extends Node3D
 @export_range(-90.0, 90.0) var tilt_lower_limit_deg := -60.0
 
 ##
-@export_range(1.0, 100.0) var tilt_sensitiveness := 10.0
+@export_range(1.0, 1000.0) var tilt_sensitiveness := 10.0
 
 ## 
-@export_range(10.0, 700.0) var horizontal_rotation_sensitiveness := 100.0
+@export_range(1.0, 1000.0) var horizontal_rotation_sensitiveness := 10.0
 
 ## 
 @export var current : bool = false :
@@ -50,10 +50,10 @@ class_name ThirdPersonCamera extends Node3D
 @export var mouse_follow : bool = false
 
 ##
-@export_range(0., 5.) var mouse_x_sensitiveness : float = 0.1
+@export_range(0., 100.) var mouse_x_sensitiveness : float = 1
 
 ## 
-@export_range(0., 2.) var mouse_y_sensitiveness : float = 0.5
+@export_range(0., 100.) var mouse_y_sensitiveness : float = 1
 
 
 # Camera3D properies replication
@@ -96,39 +96,43 @@ func _physics_process(_delta):
 func _process_horizontal_rotation_input() :
 	if InputMap.has_action("tp_camera_right") and InputMap.has_action("tp_camera_left") :
 		var camera_horizontal_rotation_variation = Input.get_action_strength("tp_camera_right") -  Input.get_action_strength("tp_camera_left")
-		camera_horizontal_rotation_variation = camera_horizontal_rotation_variation * get_process_delta_time() * horizontal_rotation_sensitiveness
+		camera_horizontal_rotation_variation = camera_horizontal_rotation_variation * get_process_delta_time() * 30 * horizontal_rotation_sensitiveness
 		camera_horizontal_rotation_deg += camera_horizontal_rotation_variation
 
 
 func _process_tilt_input() :
 	if InputMap.has_action("tp_camera_up") and InputMap.has_action("tp_camera_down") :
 		var tilt_variation = Input.get_action_strength("tp_camera_up") -  Input.get_action_strength("tp_camera_down")
-		tilt_variation = tilt_variation * get_process_delta_time() * tilt_sensitiveness
+		tilt_variation = tilt_variation * get_process_delta_time() * 5 * tilt_sensitiveness
 		camera_tilt_deg = clamp(camera_tilt_deg + tilt_variation, tilt_lower_limit_deg - initial_dive_angle_deg, tilt_upper_limit_deg - initial_dive_angle_deg)
 	
 
 
 func _update_camera_tilt() :
-	_camera.global_rotation_degrees.x = clampf(initial_dive_angle_deg + camera_tilt_deg, tilt_lower_limit_deg, tilt_upper_limit_deg)
+	var tilt_final_val = clampf(initial_dive_angle_deg + camera_tilt_deg, tilt_lower_limit_deg, tilt_upper_limit_deg)
+	var tween = create_tween()
+	tween.tween_property(_camera, "global_rotation_degrees:x", tilt_final_val, 0.1)
 
 
 func _update_camera_horizontal_rotation() :
 	# TODO : inverse
-	_camera_rotation_pivot.global_rotation_degrees.y = camera_horizontal_rotation_deg * -1
+	var tween = create_tween()
+	tween.tween_property(_camera_rotation_pivot, "global_rotation_degrees:y", camera_horizontal_rotation_deg * -1, 0.1).as_relative()
+	camera_horizontal_rotation_deg = 0.0 # reset the value
 	var vect_to_offset_pivot : Vector2 = (
 		Vector2(_camera_offset_pivot.global_position.x, _camera_offset_pivot.global_position.z) 
 		-
 		Vector2(_camera.global_position.x, _camera.global_position.z)
 		).normalized()
-	_camera.global_rotation.y = -Vector2(0., -1.).angle_to(Vector2(vect_to_offset_pivot).normalized())
+	_camera.global_rotation.y = -Vector2(0., -1.).angle_to(vect_to_offset_pivot.normalized())
 	
 
 
 
 func _unhandled_input(event):
 	if mouse_follow and event is InputEventMouseMotion:
-		camera_horizontal_rotation_deg += event.relative.x * mouse_x_sensitiveness
-		camera_tilt_deg -= event.relative.y * mouse_y_sensitiveness
+		camera_horizontal_rotation_deg += event.relative.x * 0.1 * mouse_x_sensitiveness
+		camera_tilt_deg -= event.relative.y * 0.07 * mouse_y_sensitiveness
 		return
 	
 	pass

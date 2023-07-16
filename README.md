@@ -12,6 +12,8 @@
   </video>
 </p>
 
+![Demo Video](TPC-readme-assets\TPC-demo-video.mp4)
+
 A Third Person Camera for Godot4.
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)](Status)
