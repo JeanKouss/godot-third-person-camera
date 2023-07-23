@@ -6,6 +6,14 @@
   </a>
 </p>
 
+<p align="center">
+  <video controls>
+	<source src="TPC-readme-assets\TPC-demo-video.mp4" type="video/mp4">
+  </video>
+</p>
+
+![Demo Video](TPC-readme-assets\TPC-demo-video.mp4)
+
 A Third Person Camera for Godot4.
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)](Status)
@@ -19,21 +27,21 @@ A Third Person Camera for Godot4.
   - [📝 Table of Contents](#-table-of-contents)
   - [🏁 About](#-about)
   - [🏁 Documentation](#-documentation)
-    - [Third Person Camera Configuration Properties](#third-person-camera-configuration-properties)
-      - [Distance From Pivot](#distance-from-pivot)
-      - [Pivot Offset](#pivot-offset)
-      - [Dive angle](#dive-angle)
-      - [Tilt upper limit](#tilt-upper-limit)
-      - [Tilt lower limit](#tilt-lower-limit)
-      - [Tilt sensitiveness](#tilt-sensitiveness)
-      - [Horizontal rotation sensitiveness](#horizontal-rotation-sensitiveness)
-      - [Current](#current)
-      - [Mouse Follow](#mouse-follow)
-      - [Mouse X sensitiveness](#mouse-x-sensitiveness)
-      - [Mouse Y sensitiveness](#mouse-y-sensitiveness)
-      - [Camera tilt](#camera-tilt)
-      - [Camera horizontal rotation](#camera-horizontal-rotation)
-    - [Camera3D Properties](#camera3d-properties)
+	- [Third Person Camera Configuration Properties](#third-person-camera-configuration-properties)
+	  - [Distance From Pivot](#distance-from-pivot)
+	  - [Pivot Offset](#pivot-offset)
+	  - [Dive angle](#dive-angle)
+	  - [Tilt upper limit](#tilt-upper-limit)
+	  - [Tilt lower limit](#tilt-lower-limit)
+	  - [Tilt sensitiveness](#tilt-sensitiveness)
+	  - [Horizontal rotation sensitiveness](#horizontal-rotation-sensitiveness)
+	  - [Current](#current)
+	  - [Mouse Follow](#mouse-follow)
+	  - [Mouse X sensitiveness](#mouse-x-sensitiveness)
+	  - [Mouse Y sensitiveness](#mouse-y-sensitiveness)
+	  - [Camera tilt](#camera-tilt)
+	  - [Camera horizontal rotation](#camera-horizontal-rotation)
+	- [Camera3D Properties](#camera3d-properties)
 
 ## 🏁 About<a id = "about"></a>
 
