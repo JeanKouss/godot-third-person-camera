@@ -95,8 +95,6 @@ mesh = SubResource("SphereMesh_fny35")
 shape = SubResource("SphereShape3D_ji1ja")
 
 [node name="ThirdPersonCamera" parent="RigidBody3D" instance=ExtResource("3_ky3rl")]
-tilt_sensitiveness = 100.0
-horizontal_rotation_sensitiveness = 100.0
 current = true
 mouse_x_sensitiveness = 0.7
 
