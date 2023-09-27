@@ -43,7 +43,6 @@ class_name ThirdPersonCamera extends Node3D
 		$Camera.current = value
 		current = value
 
-
 ## 
 @export_group("mouse")
 ## 
@@ -55,8 +54,18 @@ class_name ThirdPersonCamera extends Node3D
 ## 
 @export_range(0., 100.) var mouse_y_sensitiveness : float = 1
 
+# SpringArm3D properties replication
+@export_category("SpringArm3D")
+@export_flags_3d_render var spring_arm_collision_mask : int = 1 :
+	set(value) :
+		spring_arm_collision_mask = value
+		$RotationPivot/OffsetPivot/CameraSpringArm.collision_mask = value
+@export_range(0.0, 100.0, 0.01, "or_greater", "or_less", "hide_slider", "suffix:m") var spring_arm_margin : float = 0.01 :
+	set(value) :
+		spring_arm_margin = value
+		$RotationPivot/OffsetPivot/CameraSpringArm.margin = value
 
-# Camera3D properies replication
+# Camera3D properties replication
 @export_category("Camera3D")
 @export var keep_aspect : Camera3D.KeepAspect = Camera3D.KEEP_HEIGHT
 @export_flags_3d_render var cull_mask : int = 1048575
