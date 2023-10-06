@@ -12,7 +12,6 @@
   </video>
 </p>
 
-![Demo Video](TPC-readme-assets\TPC-demo-video.mp4)
 
 A Third Person Camera for Godot4.
 
@@ -24,32 +23,53 @@ A Third Person Camera for Godot4.
 ## 📝 Table of Contents
 
 - [Godot Third Person Camera](#godot-third-person-camera)
-  - [📝 Table of Contents](#-table-of-contents)
-  - [🏁 About](#-about)
-  - [🏁 Documentation](#-documentation)
-	- [Third Person Camera Configuration Properties](#third-person-camera-configuration-properties)
-	  - [Distance From Pivot](#distance-from-pivot)
-	  - [Pivot Offset](#pivot-offset)
-	  - [Dive angle](#dive-angle)
-	  - [Tilt upper limit](#tilt-upper-limit)
-	  - [Tilt lower limit](#tilt-lower-limit)
-	  - [Tilt sensitiveness](#tilt-sensitiveness)
-	  - [Horizontal rotation sensitiveness](#horizontal-rotation-sensitiveness)
-	  - [Current](#current)
-	  - [Mouse Follow](#mouse-follow)
-	  - [Mouse X sensitiveness](#mouse-x-sensitiveness)
-	  - [Mouse Y sensitiveness](#mouse-y-sensitiveness)
-	  - [Camera tilt](#camera-tilt)
-	  - [Camera horizontal rotation](#camera-horizontal-rotation)
-	- [Camera3D Properties](#camera3d-properties)
+	- [📝 Table of Contents](#-table-of-contents)
+	- [🏁 About](#-about)
+	- [🏁 Documentation](#-documentation)
+		- [How to use ?](#how-to-use-)
+		- [Third Person Camera Properties](#third-person-camera-properties)
+			- [Distance From Pivot](#distance-from-pivot)
+			- [Pivot Offset](#pivot-offset)
+			- [Dive angle](#dive-angle)
+			- [Tilt upper limit](#tilt-upper-limit)
+			- [Tilt lower limit](#tilt-lower-limit)
+			- [Tilt sensitiveness](#tilt-sensitiveness)
+			- [Horizontal rotation sensitiveness](#horizontal-rotation-sensitiveness)
+			- [Current](#current)
+			- [Mouse Follow](#mouse-follow)
+			- [Mouse X sensitiveness](#mouse-x-sensitiveness)
+			- [Mouse Y sensitiveness](#mouse-y-sensitiveness)
+			- [Camera tilt](#camera-tilt)
+			- [Camera horizontal rotation](#camera-horizontal-rotation)
+		- [Camera3D Properties](#camera3d-properties)
 
 ## 🏁 About<a id = "about"></a>
 
-Here is a quick demo
+This is a ready-to-use third person camera for your 3D games. It is also highly configurable and its configurability allows you to use it in multiple ways :
+- Dynamic Follow
+- Fixed Perspective
+- Shoulder View
+- Over-The-Shoulder View
 
 ## 🏁 Documentation<a id = "doc"></a>
 
-### Third Person Camera Configuration Properties
+### How to use ?
+
+1. Add the scene `ThirdPersonCamera.tscn` located at `addons\third-person-camera\third_person_camera` as child for you character node.
+2. Twerk the properties to fit you need.
+
+### Third Person Camera Public Methods
+
+#### get_camera()
+Return the `Camera3D`
+
+#### get_front_direction()
+Return the direction forward the camera view
+
+#### get_back_direction()
+Return the direction backward the camera view
+
+### Third Person Camera Properties
 
 #### Distance From Pivot
 
