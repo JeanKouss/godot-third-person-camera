@@ -33,7 +33,7 @@ shape = SubResource("SeparationRayShape3D_84uqy")
 spring_length = 10.0
 
 [node name="CameraMarker" type="Marker3D" parent="RotationPivot/OffsetPivot/CameraSpringArm"]
-transform = Transform3D(1, 7.93403e-08, 3.5101e-07, 1.48521e-08, 1, -7.89762e-06, 2.08538e-07, 1.2219e-06, 1, -6.69741e-09, -0.000566006, 9.99999)
+transform = Transform3D(1, 7.93401e-08, 3.5101e-07, 1.48521e-08, 1, -7.89762e-06, 2.08538e-07, 1.2219e-06, 1, -6.69741e-09, -0.000566006, 9.99999)
 
 [node name="PivotDebug" type="MeshInstance3D" parent="RotationPivot/OffsetPivot"]
 visible = false
