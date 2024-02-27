@@ -92,8 +92,7 @@ func _physics_process(_delta):
 	if Engine.is_editor_hint() :
 		_camera_marker.global_position = Vector3(0., 0., 1.).rotated(Vector3(1., 0., 0.), deg_to_rad(initial_dive_angle_deg)).rotated(Vector3(0., 1., 0.), deg_to_rad(-camera_horizontal_rotation_deg)) * _camera_spring_arm.spring_length + _camera_spring_arm.global_position
 		pass
-	#_camera.global_position = _camera_marker.global_position
-	tweenCameraToMarker()
+	moveCameraToMarker()
 	_camera_offset_pivot.global_position = _camera_offset_pivot.get_parent().to_global(Vector3(pivot_offset.x, pivot_offset.y, 0.0)) 
 	_camera_rotation_pivot.global_rotation_degrees.x = initial_dive_angle_deg
 	_camera_rotation_pivot.global_position = global_position
@@ -102,9 +101,11 @@ func _physics_process(_delta):
 	_update_camera_tilt()
 	_update_camera_horizontal_rotation()
 
-func tweenCameraToMarker() :
-	var tween = create_tween()
-	tween.tween_property(_camera, "global_position", _camera_marker.global_position, 0.1)
+func moveCameraToMarker() :
+	_camera.global_position = _camera_marker.global_position
+	# tween can cause jittering, but you can revive it if you feel the camera moves not smooth.
+	#var tween = create_tween()
+	#tween.tween_property(_camera, "global_position", _camera_marker.global_position, 0.1)
 
 func _process_horizontal_rotation_input() :
 	if InputMap.has_action("tp_camera_right") and InputMap.has_action("tp_camera_left") :
