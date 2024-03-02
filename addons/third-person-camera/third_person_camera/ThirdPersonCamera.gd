@@ -8,14 +8,26 @@ class_name ThirdPersonCamera extends Node3D
 @onready var _camera_offset_pivot = $RotationPivot/OffsetPivot
 @onready var _camera_spring_arm := $RotationPivot/OffsetPivot/CameraSpringArm
 @onready var _camera_marker := $RotationPivot/OffsetPivot/CameraSpringArm/CameraMarker
+@onready var _camera_shaker := $CameraShaker
 
+# An array of "update tuples" to apply.
+# Each update tuple has 3 elements, (Node, Property Name, New Value)
+# The update tuple is processed to update child node property values.
+# This is used to avoid errors in setting new property values
+# for child nodes which haven't been initialized yet.
+var _pending_node_updates: Array[Array] = []
+const TARGET_CHILD_NODES = [^"CameraShaker", ^"RotationPivot/OffsetPivot/CameraSpringArm"]
+const NODE_INDEX: int = 0
+const PROPERTY_NAME_INDEX: int = 1
+const NEW_VALUE_INDEX: int = 2
 
 
 ##
 @export var distance_from_pivot := 10.0 :
 	set(value) :
 		distance_from_pivot = value
-		$RotationPivot/OffsetPivot/CameraSpringArm.spring_length = distance_from_pivot
+		_pending_node_updates.append([^"RotationPivot/OffsetPivot/CameraSpringArm", &"spring_length", value])
+
 
 ##
 @export var pivot_offset := Vector2.ZERO
@@ -57,16 +69,38 @@ class_name ThirdPersonCamera extends Node3D
 ##
 @export_range(0., 100.) var mouse_y_sensitiveness : float = 1
 
+##
+@export_group("Camera Shake")
+
+# How quickly to move through the noise
+@export var shake_volatility: float = 15.0 :
+	set(value) :
+		shake_volatility = value
+		_pending_node_updates.append([^"CameraShaker", &"volatility", value])
+# Noise returns values in the range (-1, 1)
+# So this is how much to multiply the returned value by
+@export var shake_strength: float = 1.0 :
+	set(value) :
+		shake_strength = value
+		_pending_node_updates.append([^"CameraShaker", &"strength", value])
+# Multiplier for lerping the shake strength to zero
+@export var shake_decay_rate: float = 10.0 :
+	set(value) :
+		shake_decay_rate = value
+		_pending_node_updates.append([^"CameraShaker", &"decay_rate", value])
+
+
 # SpringArm3D properties replication
 @export_category("SpringArm3D")
 @export_flags_3d_render var spring_arm_collision_mask : int = 1 :
 	set(value) :
 		spring_arm_collision_mask = value
-		$RotationPivot/OffsetPivot/CameraSpringArm.collision_mask = value
+		_pending_node_updates.append([^"RotationPivot/OffsetPivot/CameraSpringArm", &"collision_mask", value])
 @export_range(0.0, 100.0, 0.01, "or_greater", "or_less", "hide_slider", "suffix:m") var spring_arm_margin : float = 0.01 :
 	set(value) :
 		spring_arm_margin = value
-		$RotationPivot/OffsetPivot/CameraSpringArm.margin = value
+		_pending_node_updates.append([^"RotationPivot/OffsetPivot/CameraSpringArm", &"margin", value])
+
 
 # Camera3D properties replication
 @export_category("Camera3D")
@@ -89,8 +123,22 @@ var camera_horizontal_rotation_deg := 0.
 func _ready():
 	_camera.top_level = true
 
+	# NOTE: This triggers the set functions for each of these properties.
+	# This initializes the child node properties to the correct values.
+	shake_volatility = shake_volatility
+	shake_decay_rate = shake_decay_rate
+	shake_strength = shake_strength
+
+	spring_arm_collision_mask = spring_arm_collision_mask
+	spring_arm_margin = spring_arm_margin
+	distance_from_pivot = distance_from_pivot
+
+
+
 
 func _physics_process(_delta):
+	_apply_pending_updates()
+
 	_update_camera_properties()
 	if Engine.is_editor_hint() :
 		_camera_marker.global_position = Vector3(0., 0., 1.).rotated(Vector3(1., 0., 0.), deg_to_rad(initial_dive_angle_deg)).rotated(Vector3(0., 1., 0.), deg_to_rad(-camera_horizontal_rotation_deg)) * _camera_spring_arm.spring_length + _camera_spring_arm.global_position
@@ -104,6 +152,17 @@ func _physics_process(_delta):
 	_process_horizontal_rotation_input()
 	_update_camera_tilt()
 	_update_camera_horizontal_rotation()
+
+
+func _apply_pending_updates():
+	if not _pending_node_updates:
+		return
+
+	for update_tuple: Array in _pending_node_updates:
+		get_node(update_tuple[NODE_INDEX]).set(update_tuple[PROPERTY_NAME_INDEX], update_tuple[NEW_VALUE_INDEX])
+
+	_pending_node_updates.clear()
+
 
 func tweenCameraToMarker() :
 	_camera.global_position = lerp(_camera.global_position, _camera_marker.global_position, camera_speed)
@@ -142,6 +201,9 @@ func _update_camera_horizontal_rotation() :
 	_camera.global_rotation.y = -Vector2(0., -1.).angle_to(vect_to_offset_pivot.normalized())
 
 
+func apply_shake() :
+	_camera_shaker.apply_noise_shake()
+
 
 
 func _unhandled_input(event):
@@ -165,6 +227,12 @@ func _update_camera_properties() :
 		_camera.environment = environment
 	if _camera.attributes != attributes :
 		_camera.attributes = attributes
+
+
+func _update_camera_shake_properties() :
+	_camera_shaker.volatility = shake_volatility
+	_camera_shaker.strength = shake_strength
+	_camera_shaker.decay_rate = shake_decay_rate
 
 
 func get_camera() :

@@ -18,6 +18,8 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("right") :
 		var dir = camera.get_right_direction()
 		apply_central_force(dir * speed)
+	if Input.is_action_just_pressed("camera_shake") :
+		camera.apply_shake()
 
 
 func _unhandled_input(event):
