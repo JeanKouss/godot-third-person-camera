@@ -16,7 +16,6 @@ class_name ThirdPersonCamera extends Node3D
 # This is used to avoid errors in setting new property values
 # for child nodes which haven't been initialized yet.
 var _pending_node_updates: Array[Array] = []
-const TARGET_CHILD_NODES = [^"CameraShaker", ^"RotationPivot/OffsetPivot/CameraSpringArm"]
 const NODE_INDEX: int = 0
 const PROPERTY_NAME_INDEX: int = 1
 const NEW_VALUE_INDEX: int = 2
@@ -227,12 +226,6 @@ func _update_camera_properties() :
 		_camera.environment = environment
 	if _camera.attributes != attributes :
 		_camera.attributes = attributes
-
-
-func _update_camera_shake_properties() :
-	_camera_shaker.volatility = shake_volatility
-	_camera_shaker.strength = shake_strength
-	_camera_shaker.decay_rate = shake_decay_rate
 
 
 func get_camera() :
