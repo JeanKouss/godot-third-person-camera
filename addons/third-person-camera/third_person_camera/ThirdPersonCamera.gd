@@ -60,22 +60,7 @@ class_name ThirdPersonCamera extends Node3D
 ##
 @export_group("Camera Shake")
 
-# How quickly to move through the noise
-@export var shake_volatility: float = 15.0 :
-	set(value) :
-		shake_volatility = value
-		_set_when_ready(^"CameraShaker", &"volatility", value)
-# Noise returns values in the range (-1, 1)
-# So this is how much to multiply the returned value by
-@export var shake_strength: float = 1.0 :
-	set(value) :
-		shake_strength = value
-		_set_when_ready(^"CameraShaker", &"strength", value)
-# Multiplier for lerping the shake strength to zero
-@export var shake_decay_rate: float = 10.0 :
-	set(value) :
-		shake_decay_rate = value
-		_set_when_ready(^"CameraShaker", &"decay_rate", value)
+@export var shake_presets: Array[CameraShakePreset]
 
 
 # SpringArm3D properties replication
@@ -120,10 +105,6 @@ func _ready():
 
 	# NOTE: This triggers the set functions for each of these properties.
 	# This initializes the child node properties to the correct values.
-	shake_volatility = shake_volatility
-	shake_decay_rate = shake_decay_rate
-	shake_strength = shake_strength
-
 	spring_arm_collision_mask = spring_arm_collision_mask
 	spring_arm_margin = spring_arm_margin
 	distance_from_pivot = distance_from_pivot
@@ -186,8 +167,8 @@ func _update_camera_horizontal_rotation() :
 	_camera.global_rotation.y = -Vector2(0., -1.).angle_to(vect_to_offset_pivot.normalized())
 
 
-func apply_shake() :
-	_camera_shaker.apply_noise_shake()
+func apply_preset_shake(preset_number: int) :
+	_camera_shaker.apply_preset_shake(shake_presets[preset_number])
 
 
 
