@@ -10,22 +10,11 @@ class_name ThirdPersonCamera extends Node3D
 @onready var _camera_marker := $RotationPivot/OffsetPivot/CameraSpringArm/CameraMarker
 @onready var _camera_shaker := $CameraShaker
 
-# An array of "update tuples" to apply.
-# Each update tuple has 3 elements, (Node, Property Name, New Value)
-# The update tuple is processed to update child node property values.
-# This is used to avoid errors in setting new property values
-# for child nodes which haven't been initialized yet.
-var _pending_node_updates: Array[Array] = []
-const NODE_INDEX: int = 0
-const PROPERTY_NAME_INDEX: int = 1
-const NEW_VALUE_INDEX: int = 2
-
-
 ##
 @export var distance_from_pivot := 10.0 :
 	set(value) :
 		distance_from_pivot = value
-		_pending_node_updates.append([^"RotationPivot/OffsetPivot/CameraSpringArm", &"spring_length", value])
+		_set_when_ready(^"RotationPivot/OffsetPivot/CameraSpringArm", &"spring_length", value)
 
 
 ##
@@ -54,8 +43,8 @@ const NEW_VALUE_INDEX: int = 2
 ##
 @export var current : bool = false :
 	set(value) :
-		$Camera.current = value
 		current = value
+		_set_when_ready(^"Camera", &"current", value)
 
 ##
 @export_group("mouse")
@@ -75,18 +64,18 @@ const NEW_VALUE_INDEX: int = 2
 @export var shake_volatility: float = 15.0 :
 	set(value) :
 		shake_volatility = value
-		_pending_node_updates.append([^"CameraShaker", &"volatility", value])
+		_set_when_ready(^"CameraShaker", &"volatility", value)
 # Noise returns values in the range (-1, 1)
 # So this is how much to multiply the returned value by
 @export var shake_strength: float = 1.0 :
 	set(value) :
 		shake_strength = value
-		_pending_node_updates.append([^"CameraShaker", &"strength", value])
+		_set_when_ready(^"CameraShaker", &"strength", value)
 # Multiplier for lerping the shake strength to zero
 @export var shake_decay_rate: float = 10.0 :
 	set(value) :
 		shake_decay_rate = value
-		_pending_node_updates.append([^"CameraShaker", &"decay_rate", value])
+		_set_when_ready(^"CameraShaker", &"decay_rate", value)
 
 
 # SpringArm3D properties replication
@@ -94,11 +83,11 @@ const NEW_VALUE_INDEX: int = 2
 @export_flags_3d_render var spring_arm_collision_mask : int = 1 :
 	set(value) :
 		spring_arm_collision_mask = value
-		_pending_node_updates.append([^"RotationPivot/OffsetPivot/CameraSpringArm", &"collision_mask", value])
+		_set_when_ready(^"RotationPivot/OffsetPivot/CameraSpringArm", &"collision_mask", value)
 @export_range(0.0, 100.0, 0.01, "or_greater", "or_less", "hide_slider", "suffix:m") var spring_arm_margin : float = 0.01 :
 	set(value) :
 		spring_arm_margin = value
-		_pending_node_updates.append([^"RotationPivot/OffsetPivot/CameraSpringArm", &"margin", value])
+		_set_when_ready(^"RotationPivot/OffsetPivot/CameraSpringArm", &"margin", value)
 
 
 # Camera3D properties replication
@@ -118,6 +107,13 @@ const NEW_VALUE_INDEX: int = 2
 var camera_tilt_deg := 0.
 var camera_horizontal_rotation_deg := 0.
 
+func _set_when_ready(node_path : NodePath, property_name : StringName, value : Variant) :
+	if not is_node_ready() :
+		await ready
+		get_node(node_path).set(property_name, value)
+	else :
+		get_node(node_path).set(property_name, value)
+
 
 func _ready():
 	_camera.top_level = true
@@ -136,7 +132,6 @@ func _ready():
 
 
 func _physics_process(_delta):
-	_apply_pending_updates()
 
 	_update_camera_properties()
 	if Engine.is_editor_hint() :
@@ -152,15 +147,6 @@ func _physics_process(_delta):
 	_update_camera_tilt()
 	_update_camera_horizontal_rotation()
 
-
-func _apply_pending_updates():
-	if not _pending_node_updates:
-		return
-
-	for update_tuple: Array in _pending_node_updates:
-		get_node(update_tuple[NODE_INDEX]).set(update_tuple[PROPERTY_NAME_INDEX], update_tuple[NEW_VALUE_INDEX])
-
-	_pending_node_updates.clear()
 
 
 func tweenCameraToMarker() :
