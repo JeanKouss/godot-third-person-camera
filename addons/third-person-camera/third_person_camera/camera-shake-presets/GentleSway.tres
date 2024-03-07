@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CameraShakePreset" load_steps=2 format=3 uid="uid://cn4iinuc23o7j"]
+
+[ext_resource type="Script" path="res://addons/third-person-camera/third_person_camera/CameraShakePreset.gd" id="1_mgo07"]
+
+[resource]
+script = ExtResource("1_mgo07")
+volatility = 0.1
+strength = 0.5
+decay_rate = 0.1

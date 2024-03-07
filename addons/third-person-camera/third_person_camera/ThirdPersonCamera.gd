@@ -8,14 +8,14 @@ class_name ThirdPersonCamera extends Node3D
 @onready var _camera_offset_pivot = $RotationPivot/OffsetPivot
 @onready var _camera_spring_arm := $RotationPivot/OffsetPivot/CameraSpringArm
 @onready var _camera_marker := $RotationPivot/OffsetPivot/CameraSpringArm/CameraMarker
-
-
+@onready var _camera_shaker := $CameraShaker
 
 ##
 @export var distance_from_pivot := 10.0 :
 	set(value) :
 		distance_from_pivot = value
-		$RotationPivot/OffsetPivot/CameraSpringArm.spring_length = distance_from_pivot
+		_set_when_ready(^"RotationPivot/OffsetPivot/CameraSpringArm", &"spring_length", value)
+
 
 ##
 @export var pivot_offset := Vector2.ZERO
@@ -43,8 +43,8 @@ class_name ThirdPersonCamera extends Node3D
 ##
 @export var current : bool = false :
 	set(value) :
-		$Camera.current = value
 		current = value
+		_set_when_ready(^"Camera", &"current", value)
 
 ##
 @export_group("mouse")
@@ -57,16 +57,23 @@ class_name ThirdPersonCamera extends Node3D
 ##
 @export_range(0., 100.) var mouse_y_sensitiveness : float = 1
 
+##
+@export_group("Camera Shake")
+
+@export var shake_presets: Array[CameraShakePreset]
+
+
 # SpringArm3D properties replication
 @export_category("SpringArm3D")
 @export_flags_3d_render var spring_arm_collision_mask : int = 1 :
 	set(value) :
 		spring_arm_collision_mask = value
-		$RotationPivot/OffsetPivot/CameraSpringArm.collision_mask = value
+		_set_when_ready(^"RotationPivot/OffsetPivot/CameraSpringArm", &"collision_mask", value)
 @export_range(0.0, 100.0, 0.01, "or_greater", "or_less", "hide_slider", "suffix:m") var spring_arm_margin : float = 0.01 :
 	set(value) :
 		spring_arm_margin = value
-		$RotationPivot/OffsetPivot/CameraSpringArm.margin = value
+		_set_when_ready(^"RotationPivot/OffsetPivot/CameraSpringArm", &"margin", value)
+
 
 # Camera3D properties replication
 @export_category("Camera3D")
@@ -85,12 +92,20 @@ class_name ThirdPersonCamera extends Node3D
 var camera_tilt_deg := 0.
 var camera_horizontal_rotation_deg := 0.
 
+func _set_when_ready(node_path : NodePath, property_name : StringName, value : Variant) :
+	if not is_node_ready() :
+		await ready
+		get_node(node_path).set(property_name, value)
+	else :
+		get_node(node_path).set(property_name, value)
+
 
 func _ready():
 	_camera.top_level = true
 
 
 func _physics_process(_delta):
+
 	_update_camera_properties()
 	if Engine.is_editor_hint() :
 		_camera_marker.global_position = Vector3(0., 0., 1.).rotated(Vector3(1., 0., 0.), deg_to_rad(initial_dive_angle_deg)).rotated(Vector3(0., 1., 0.), deg_to_rad(-camera_horizontal_rotation_deg)) * _camera_spring_arm.spring_length + _camera_spring_arm.global_position
@@ -104,6 +119,7 @@ func _physics_process(_delta):
 	_process_horizontal_rotation_input()
 	_update_camera_tilt()
 	_update_camera_horizontal_rotation()
+
 
 func tweenCameraToMarker() :
 	_camera.global_position = lerp(_camera.global_position, _camera_marker.global_position, camera_speed)
@@ -141,6 +157,9 @@ func _update_camera_horizontal_rotation() :
 		).normalized()
 	_camera.global_rotation.y = -Vector2(0., -1.).angle_to(vect_to_offset_pivot.normalized())
 
+
+func apply_preset_shake(preset_number: int) :
+	_camera_shaker.apply_preset_shake(shake_presets[preset_number])
 
 
 
