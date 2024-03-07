@@ -103,14 +103,6 @@ func _set_when_ready(node_path : NodePath, property_name : StringName, value : V
 func _ready():
 	_camera.top_level = true
 
-	# NOTE: This triggers the set functions for each of these properties.
-	# This initializes the child node properties to the correct values.
-	spring_arm_collision_mask = spring_arm_collision_mask
-	spring_arm_margin = spring_arm_margin
-	distance_from_pivot = distance_from_pivot
-
-
-
 
 func _physics_process(_delta):
 
@@ -127,7 +119,6 @@ func _physics_process(_delta):
 	_process_horizontal_rotation_input()
 	_update_camera_tilt()
 	_update_camera_horizontal_rotation()
-
 
 
 func tweenCameraToMarker() :
