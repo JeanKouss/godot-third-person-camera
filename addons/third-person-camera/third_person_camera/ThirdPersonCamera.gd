@@ -10,6 +10,8 @@ class_name ThirdPersonCamera extends Node3D
 @onready var _camera_marker := $RotationPivot/OffsetPivot/CameraSpringArm/CameraMarker
 @onready var _camera_shaker := $CameraShaker
 
+
+
 ##
 @export var distance_from_pivot := 10.0 :
 	set(value) :
@@ -88,7 +90,7 @@ class_name ThirdPersonCamera extends Node3D
 @export var far := 4000.0
 
 
-
+var base_editor_viewport_cams : Array[Camera3D]
 var camera_tilt_deg := 0.
 var camera_horizontal_rotation_deg := 0.
 
@@ -102,6 +104,8 @@ func _set_when_ready(node_path : NodePath, property_name : StringName, value : V
 
 func _ready():
 	_camera.top_level = true
+	_get_editor_viewport_cams()
+	_connect_signals()
 
 
 func _physics_process(_delta):
@@ -189,7 +193,6 @@ func _update_camera_properties() :
 func get_camera() :
 	return $Camera
 
-
 func get_front_direction() :
 	var dir : Vector3 = _camera_offset_pivot.global_position - _camera.global_position
 	dir.y = 0.
@@ -204,3 +207,21 @@ func get_left_direction() :
 
 func get_right_direction() :
 	return get_front_direction().rotated(Vector3.UP, -PI/2)
+
+
+func _connect_signals() :
+	get_node("/root/TpcAutoload").preview_enabled.connect(_activate_preview)
+	get_node("/root/TpcAutoload").preview_desabled.connect(_deactivate_preview)
+
+func _activate_preview(id) :
+	var vp_rid = EditorInterface.get_editor_viewport_3d(id).get_viewport_rid()
+	RenderingServer.viewport_attach_camera(vp_rid, get_camera().get_camera_rid())
+
+func _deactivate_preview(id) :
+	var vp_rid = EditorInterface.get_editor_viewport_3d(id).get_viewport_rid()
+	RenderingServer.viewport_attach_camera(vp_rid, base_editor_viewport_cams[id].get_camera_rid())
+
+
+func _get_editor_viewport_cams() :
+	for i in range(4) :
+		base_editor_viewport_cams.append(EditorInterface.get_editor_viewport_3d(i).get_camera_3d())

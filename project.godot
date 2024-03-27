@@ -15,6 +15,10 @@ run/main_scene="res://TPC-demo/TestScene.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TpcAutoload="*res://addons/third-person-camera/autoloads/TPCAutoload.gd"
+
 [editor]
 
 movie_writer/movie_file="C:/projects/tpc-movie/movie.avi"
