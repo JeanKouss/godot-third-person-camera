@@ -6,7 +6,6 @@ var TPC_AUTOLOAD_NAME = "TpcAutoload"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_popup().index_pressed.connect(_on_popup_item_pressed)
-	print('hehe')
 	pass
 
 

@@ -104,7 +104,7 @@ func _set_when_ready(node_path : NodePath, property_name : StringName, value : V
 
 func _ready():
 	_camera.top_level = true
-	_get_editor_viewport_cams()
+	_register_editor_viewport_cams()
 	_connect_signals()
 
 
@@ -222,6 +222,6 @@ func _deactivate_preview(id) :
 	RenderingServer.viewport_attach_camera(vp_rid, base_editor_viewport_cams[id].get_camera_rid())
 
 
-func _get_editor_viewport_cams() :
+func _register_editor_viewport_cams() :
 	for i in range(4) :
 		base_editor_viewport_cams.append(EditorInterface.get_editor_viewport_3d(i).get_camera_3d())
