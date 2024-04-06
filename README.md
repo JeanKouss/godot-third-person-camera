@@ -18,12 +18,12 @@ A Third Person Camera for Godot4.
 
 - [Godot Third Person Camera](#godot-third-person-camera)
 - [📝 Table of Contents](#-table-of-contents)
-- [🏁 About](#-about)
-- [How to use ?](#how-to-use)
-- [Documentation ?](#documentation)
+- [❓ About](#-about)
+- [🧤 How to use ?](#how-to-use)
+- [📖 Documentation](#documentation)
 - [Camera3D Properties](#camera3d-properties)
 
-## 🏁 About<a id = "about"></a>
+## ❓ About<a id = "about"></a>
 
 This is a ready-to-use third person camera for your 3D games. It is also highly configurable and its configurability allows you to use it in multiple ways :
 - Dynamic Follow
@@ -31,12 +31,12 @@ This is a ready-to-use third person camera for your 3D games. It is also highly 
 - Shoulder View
 - Over-The-Shoulder View
 
-## 🏁 How to use ?<a id = "how-to-use"></a>
+## 🧤 How to use ?<a id = "how-to-use"></a>
 
 1. Add the scene `ThirdPersonCamera.tscn` located at `addons\third-person-camera\third_person_camera` as child for you character node.
 2. Twerk the properties to fit you need.
 
-## Documentation <a id = "documentation"></a>
+## 📖 Documentation <a id = "documentation"></a>
 
 Take a look at the documentation in the [wiki](https://github.com/JeanKouss/godot-third-person-camera/wiki#-documentation)
 
