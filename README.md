@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://godotengine.org">
-	<img src="TPC-readme-assets/ThirdPersonCamera.svg" width="200" alt="Godot Engine logo">
+	<img src="TPC-readme-assets/ThirdPersonCamera.svg" width="200" alt="Godot third person camera icon">
   </a>
 </p>
 
