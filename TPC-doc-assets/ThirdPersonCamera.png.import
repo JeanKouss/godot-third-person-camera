@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://beihbumgs84es"
-path="res://.godot/imported/ThirdPersonCamera.png-a8a89caeab77a36f28900df7afec0e97.ctex"
+path="res://.godot/imported/ThirdPersonCamera.png-4ba4ec92646e25905928837bfbefb52c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TPC-readme-assets/ThirdPersonCamera.png"
-dest_files=["res://.godot/imported/ThirdPersonCamera.png-a8a89caeab77a36f28900df7afec0e97.ctex"]
+source_file="res://TPC-doc-assets/ThirdPersonCamera.png"
+dest_files=["res://.godot/imported/ThirdPersonCamera.png-4ba4ec92646e25905928837bfbefb52c.ctex"]
 
 [params]
 
