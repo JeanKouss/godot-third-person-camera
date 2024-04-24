@@ -44,4 +44,4 @@ Take a look at the documentation in the [wiki](https://github.com/JeanKouss/godo
 
 All Godot `Camera3D` Properties are available. You can access to camera node by `get_camera()` method. Also, it exported variables are available in the editor.
 
-![Camera3D properties image](TPC-readme-assets/doc/inspector.png)
+![Camera3D properties image](./TPC-doc-assets/doc/inspector.png)
