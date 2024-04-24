@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://br8pgusvnmw2r"]
+
+[ext_resource type="Texture2D" uid="uid://dgbqe4e8m5dlo" path="res://addons/third-person-camera/third_person_camera/ThirdPersonCameraIcon.svg" id="1_0p4dd"]
+[ext_resource type="Script" path="res://addons/third-person-camera/docks/Preview.gd" id="2_014r1"]
+
+[sub_resource type="Theme" id="Theme_8umop"]
+
+[node name="Preview" type="MenuButton"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_right = 8.0
+offset_bottom = 4.0
+grow_vertical = 2
+theme = SubResource("Theme_8umop")
+text = "TPC Preview"
+icon = ExtResource("1_0p4dd")
+switch_on_hover = true
+item_count = 4
+popup/item_0/text = "Viewport 0"
+popup/item_0/checkable = 1
+popup/item_0/id = 0
+popup/item_1/text = "Viewport 1"
+popup/item_1/checkable = 1
+popup/item_1/id = 1
+popup/item_2/text = "Viewport 2"
+popup/item_2/checkable = 1
+popup/item_2/id = 2
+popup/item_3/text = "Viewport 3"
+popup/item_3/checkable = 1
+popup/item_3/id = 3
+script = ExtResource("2_014r1")
