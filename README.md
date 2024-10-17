@@ -33,8 +33,16 @@ This is a ready-to-use third person camera for your 3D games. It is also highly 
 
 ## 🧤 How to use ?<a id = "how-to-use"></a>
 
-1. Add the scene `ThirdPersonCamera.tscn` located at `addons\third-person-camera\third_person_camera` as child for you character node.
+**Adding to the scene**
+
+1. Add the scene `ThirdPersonCamera.tscn` located at `addons\third-person-camera\third_person_camera` as child for you character node or any other node you want the camera to be attached to.
 2. Twerk the properties to fit you need.
+
+**Previewing**
+
+1. Click the "Third Person Camera" button located at the bottom of the editor, to open the preview panel. 
+![image](https://github.com/user-attachments/assets/cd6a51f0-908a-499b-865f-7cc2fe0ea424)
+2. Select a `ThirdPersonCamera` node
 
 ## 📖 Documentation <a id = "documentation"></a>
 
@@ -44,4 +52,4 @@ Take a look at the documentation in the [wiki](https://github.com/JeanKouss/godo
 
 All Godot `Camera3D` Properties are available. You can access to camera node by `get_camera()` method. Also, it exported variables are available in the editor.
 
-![Camera3D properties image](TPC-readme-assets/doc/inspector.png)
+![Camera3D properties image](./TPC-doc-assets/doc/inspector.png)
