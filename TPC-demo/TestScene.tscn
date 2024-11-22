@@ -95,7 +95,6 @@ mesh = SubResource("SphereMesh_fny35")
 shape = SubResource("SphereShape3D_ji1ja")
 
 [node name="ThirdPersonCamera" parent="RigidBody3D" instance=ExtResource("3_ky3rl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30901, 0, 0)
 current = true
 spring_arm_collision_mask = 277
 
