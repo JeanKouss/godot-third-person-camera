@@ -2,6 +2,12 @@
 @tool
 class_name ThirdPersonCamera extends Node3D
 
+enum FOLLOW_TARGETS {
+	NONE = 0,
+	MOUSE = 1,
+	PARENT = 2,
+}
+
 
 @onready var _camera := $Camera
 @onready var _camera_rotation_pivot = $RotationPivot
@@ -47,9 +53,13 @@ class_name ThirdPersonCamera extends Node3D
 		_set_when_ready(^"Camera", &"current", value)
 
 ##
-@export_group("mouse")
+@export_group("follow")
+
 ##
-@export var mouse_follow : bool = false
+@export var follow_target : FOLLOW_TARGETS = FOLLOW_TARGETS.NONE :
+	set(value):
+		follow_target = value
+		notify_property_list_changed()
 
 ##
 @export_range(0., 100.) var mouse_x_sensitiveness : float = 1
@@ -99,6 +109,16 @@ func _set_when_ready(node_path : NodePath, property_name : StringName, value : V
 	else :
 		get_node(node_path).set(property_name, value)
 
+
+func _validate_property(property: Dictionary) -> void:
+	match property.name:
+		"mouse_x_sensitiveness":
+			property.usage = PROPERTY_USAGE_NONE if follow_target!=FOLLOW_TARGETS.MOUSE else PROPERTY_USAGE_EDITOR
+		"mouse_y_sensitiveness":
+			property.usage = PROPERTY_USAGE_NONE if follow_target!=FOLLOW_TARGETS.MOUSE else PROPERTY_USAGE_EDITOR
+		_:
+			pass
+		
 
 func _ready():
 	_camera.top_level = true
@@ -164,7 +184,7 @@ func apply_preset_shake(preset_number: int) :
 
 
 func _unhandled_input(event):
-	if mouse_follow and event is InputEventMouseMotion:
+	if follow_target == FOLLOW_TARGETS.MOUSE and event is InputEventMouseMotion:
 		camera_horizontal_rotation_deg += event.relative.x * 0.1 * mouse_x_sensitiveness
 		camera_tilt_deg -= event.relative.y * 0.07 * mouse_y_sensitiveness
 		return
