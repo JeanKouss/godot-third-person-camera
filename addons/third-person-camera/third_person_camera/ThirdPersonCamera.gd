@@ -128,7 +128,7 @@ func _physics_process(_delta):
 
 	_update_camera_properties()
 	if Engine.is_editor_hint() :
-		_camera_marker.global_position = Vector3(0., 0., 1.).rotated(Vector3(1., 0., 0.), deg_to_rad(initial_dive_angle_deg)).rotated(Vector3(0., 1., 0.), deg_to_rad(-camera_horizontal_rotation_deg)) * _camera_spring_arm.spring_length + _camera_spring_arm.global_position
+		_camera_marker.global_position = Vector3(0., 0., 1.).rotated(Vector3(1., 0., 0.), deg_to_rad(initial_dive_angle_deg)).rotated(Vector3(0., 1., 0.), self.global_rotation.y) * _camera_spring_arm.spring_length + _camera_spring_arm.global_position
 		pass
 	#_camera.global_position = _camera_marker.global_position
 	tweenCameraToMarker()
@@ -139,17 +139,30 @@ func _physics_process(_delta):
 	_process_horizontal_rotation_input()
 	_update_camera_tilt()
 	_update_camera_horizontal_rotation()
+	_process_parent_rotation_follow()
 
 
 func tweenCameraToMarker() :
 	_camera.global_position = lerp(_camera.global_position, _camera_marker.global_position, camera_speed)
 
 func _process_horizontal_rotation_input() :
+	if follow_target == FOLLOW_TARGETS.PARENT :
+		return
 	if InputMap.has_action("tp_camera_right") and InputMap.has_action("tp_camera_left") :
 		var camera_horizontal_rotation_variation = Input.get_action_strength("tp_camera_right") -  Input.get_action_strength("tp_camera_left")
 		camera_horizontal_rotation_variation = camera_horizontal_rotation_variation * get_process_delta_time() * 30 * horizontal_rotation_sensitiveness
 		camera_horizontal_rotation_deg += camera_horizontal_rotation_variation
 
+func _process_parent_rotation_follow() :
+	if follow_target != FOLLOW_TARGETS.PARENT :
+		return
+	_camera_rotation_pivot.global_rotation.y = self.global_rotation.y
+	var vect_to_offset_pivot : Vector2 = (
+		Vector2(_camera_offset_pivot.global_position.x, _camera_offset_pivot.global_position.z)
+		-
+		Vector2(_camera.global_position.x, _camera.global_position.z)
+		).normalized()
+	_camera.global_rotation.y = -Vector2(0., -1.).angle_to(vect_to_offset_pivot.normalized())
 
 func _process_tilt_input() :
 	if InputMap.has_action("tp_camera_up") and InputMap.has_action("tp_camera_down") :
@@ -166,7 +179,8 @@ func _update_camera_tilt() :
 
 
 func _update_camera_horizontal_rotation() :
-	# TODO : inverse
+	if follow_target == FOLLOW_TARGETS.PARENT :
+		return
 	var tween = create_tween()
 	tween.tween_property(_camera_rotation_pivot, "global_rotation_degrees:y", camera_horizontal_rotation_deg * -1, 0.1).as_relative()
 	camera_horizontal_rotation_deg = 0.0 # reset the value
