@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="third-person-camera"
-run/main_scene="res://TPC-demo/TestScene.tscn"
+run/main_scene="res://TPC-demo/RollingBallDemo.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 

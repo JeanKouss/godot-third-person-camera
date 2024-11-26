@@ -26,7 +26,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("toggle_mouse_mode") :
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED :
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			camera.mouse_follow = false
+			camera.follow_target = camera.FOLLOW_TARGETS.NONE
 		else :
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			camera.mouse_follow = true
+			camera.follow_target = camera.FOLLOW_TARGETS.MOUSE
