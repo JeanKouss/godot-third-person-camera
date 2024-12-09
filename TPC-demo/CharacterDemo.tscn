@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cepksq0nb83gj"]
+[gd_scene load_steps=27 format=3 uid="uid://cepksq0nb83gj"]
 
 [ext_resource type="Texture2D" uid="uid://byc1l3f88knyq" path="res://TPC-demo/kenney_prototype_textures/dark/texture_12.png" id="1_t47ki"]
 [ext_resource type="Texture2D" uid="uid://3ut80mef1rtt" path="res://TPC-demo/kenney_prototype_textures/orange/texture_05.png" id="2_top83"]
@@ -69,6 +69,9 @@ uv1_triplanar = true
 data = PackedVector3Array(-11.9605, 3.686, 2.3405, 11.9605, 3.686, 2.3405, -11.9605, -3.686, 2.3405, 11.9605, 3.686, 2.3405, 11.9605, -3.686, 2.3405, -11.9605, -3.686, 2.3405, 11.9605, 3.686, -2.3405, -11.9605, 3.686, -2.3405, 11.9605, -3.686, -2.3405, -11.9605, 3.686, -2.3405, -11.9605, -3.686, -2.3405, 11.9605, -3.686, -2.3405, 11.9605, 3.686, 2.3405, 11.9605, 3.686, -2.3405, 11.9605, -3.686, 2.3405, 11.9605, 3.686, -2.3405, 11.9605, -3.686, -2.3405, 11.9605, -3.686, 2.3405, -11.9605, 3.686, -2.3405, -11.9605, 3.686, 2.3405, -11.9605, -3.686, -2.3405, -11.9605, 3.686, 2.3405, -11.9605, -3.686, 2.3405, -11.9605, -3.686, -2.3405, 11.9605, 3.686, 2.3405, -11.9605, 3.686, 2.3405, 11.9605, 3.686, -2.3405, -11.9605, 3.686, 2.3405, -11.9605, 3.686, -2.3405, 11.9605, 3.686, -2.3405, -11.9605, -3.686, 2.3405, 11.9605, -3.686, 2.3405, -11.9605, -3.686, -2.3405, 11.9605, -3.686, 2.3405, 11.9605, -3.686, -2.3405, -11.9605, -3.686, -2.3405)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7hjes"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_006hf"]
+size = Vector3(2.1, 1.5, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l77vy"]
 size = Vector3(1, 2.03217, 1)
@@ -154,6 +157,10 @@ script = ExtResource("4_j5ae8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 mesh = SubResource("CapsuleMesh_7hjes")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, -0.00118677, 0.999999, 0, -0.999999, -0.00118677, 0, 0.273003, -0.261137)
+mesh = SubResource("PrismMesh_006hf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00430298, 0)

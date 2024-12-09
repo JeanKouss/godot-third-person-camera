@@ -113,9 +113,9 @@ func _set_when_ready(node_path : NodePath, property_name : StringName, value : V
 func _validate_property(property: Dictionary) -> void:
 	match property.name:
 		"mouse_x_sensitiveness":
-			property.usage = PROPERTY_USAGE_NONE if follow_target!=FOLLOW_TARGETS.MOUSE else PROPERTY_USAGE_EDITOR
+			property.usage = PROPERTY_USAGE_NONE if follow_target!=FOLLOW_TARGETS.MOUSE else PROPERTY_USAGE_DEFAULT
 		"mouse_y_sensitiveness":
-			property.usage = PROPERTY_USAGE_NONE if follow_target!=FOLLOW_TARGETS.MOUSE else PROPERTY_USAGE_EDITOR
+			property.usage = PROPERTY_USAGE_NONE if follow_target!=FOLLOW_TARGETS.MOUSE and follow_target!=FOLLOW_TARGETS.PARENT else PROPERTY_USAGE_DEFAULT
 		_:
 			pass
 		
@@ -202,8 +202,9 @@ func _unhandled_input(event):
 		camera_horizontal_rotation_deg += event.relative.x * 0.1 * mouse_x_sensitiveness
 		camera_tilt_deg -= event.relative.y * 0.07 * mouse_y_sensitiveness
 		return
-
-	pass
+	if follow_target == FOLLOW_TARGETS.PARENT and event is InputEventMouseMotion:
+		camera_tilt_deg -= event.relative.y * 0.07 * mouse_y_sensitiveness
+		return
 
 
 func _update_camera_properties() :
