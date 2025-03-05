@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://byc1l3f88knyq" path="res://TPC-demo/kenney_prototype_textures/dark/texture_12.png" id="1_t47ki"]
 [ext_resource type="Texture2D" uid="uid://3ut80mef1rtt" path="res://TPC-demo/kenney_prototype_textures/orange/texture_05.png" id="2_top83"]
 [ext_resource type="Texture2D" uid="uid://b8dlw2gs1a6k" path="res://TPC-demo/kenney_prototype_textures/red/texture_13.png" id="3_f1s2j"]
-[ext_resource type="Script" path="res://TPC-demo/PlayerCharacter.gd" id="4_j5ae8"]
+[ext_resource type="Script" uid="uid://c6ec7g1o11gem" path="res://TPC-demo/PlayerCharacter.gd" id="4_j5ae8"]
 [ext_resource type="PackedScene" uid="uid://wmf2eu0uuhrg" path="res://addons/third-person-camera/third_person_camera/ThirdPersonCamera.tscn" id="5_ww6lf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6c2s0"]

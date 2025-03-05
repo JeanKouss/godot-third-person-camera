@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CameraShakePreset" load_steps=2 format=3 uid="uid://cn4iinuc23o7j"]
 
-[ext_resource type="Script" path="res://addons/third-person-camera/third_person_camera/CameraShakePreset.gd" id="1_mgo07"]
+[ext_resource type="Script" uid="uid://cwkqo6h1ib1hd" path="res://addons/third-person-camera/third_person_camera/CameraShakePreset.gd" id="1_mgo07"]
 
 [resource]
 script = ExtResource("1_mgo07")
