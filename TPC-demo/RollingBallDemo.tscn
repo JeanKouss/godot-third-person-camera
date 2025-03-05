@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://8gwfe74ymflf"]
 
-[ext_resource type="Script" path="res://TPC-demo/PlayerBall.gd" id="1_u3wl0"]
+[ext_resource type="Script" uid="uid://curwumnqb1yuh" path="res://TPC-demo/PlayerBall.gd" id="1_u3wl0"]
 [ext_resource type="Texture2D" uid="uid://c8vwnx65onnvv" path="res://TPC-demo/kenney_prototype_textures/green/texture_09.png" id="2_tc5sm"]
 [ext_resource type="PackedScene" uid="uid://wmf2eu0uuhrg" path="res://addons/third-person-camera/third_person_camera/ThirdPersonCamera.tscn" id="3_q7jda"]
 [ext_resource type="Texture2D" uid="uid://byc1l3f88knyq" path="res://TPC-demo/kenney_prototype_textures/dark/texture_12.png" id="4_5xh6g"]

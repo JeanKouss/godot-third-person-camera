@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bk84c3qd8enc8"]
 
-[ext_resource type="Script" path="res://addons/third-person-camera/editor_panels/Preview.gd" id="1_6i4jr"]
+[ext_resource type="Script" uid="uid://s30tm41pe3mb" path="res://addons/third-person-camera/editor_panels/Preview.gd" id="1_6i4jr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_unll7"]
 
